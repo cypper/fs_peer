@@ -1,0 +1,120 @@
+https://yandex.com/search/xml?l10n=en&user=elminazinoveva&key=03.380040564:7d097142b907ca8ebaaada43a15923c1
+
+https://yandex.com/search/xml?l10n=en&user=konradisakov&key=03.380040493:722d0a3c90451c28e39374759a558a0f
+
+https://yandex.com/search/xml?l10n=en&user=guriigolubev79&key=03.380041012:39a2d62cc091cc097425402129259e0e
+
+"AIzaSyBLVwqHoAXAdQVTAhKQ3mypJLp8ofYNXNs",
+"AIzaSyA3f1Yy2TATxDq4SbBvwsmCc2MME8j--1Y",
+"AIzaSyB-oHRENQuwP095PLNTCrMnnToxSBU9q88",
+"AIzaSyCHiuFxw018lJYGg3Sh0lmw-L1tn9_sEjE",
+"AIzaSyCUs_R--1Lb9p8t6ICykwS50_b-kSVDHrs",
+"AIzaSyBUiQBlZvhJoy7yzzweOcWWZZoapfEQmuQ",
+"AIzaSyC0Gec9DjEZ77llNWZZA7xsnYQ05dCNOUQ",
+"AIzaSyBTuy8fwR355Kb-W_aHoLoX34XvcBgu4AU",
+"AIzaSyB9NZF-340aGbJTAn1WsSwxBRhdTb8zN9s",
+"AIzaSyAKB1-5S9ZZLaOQPt_XAF4X2R6IGE85aiQ",
+"AIzaSyDVr_NA-DN7FMSiYR7vEJcOJpcbNRfMjYI",
+"AIzaSyBCnFh-tGvg6KCyh3mSA4BcjOKVh346xrY",
+"AIzaSyA6kcLMKgY8uo53cTBgamyAL1F_7EnXLO4",
+"AIzaSyBgjXuYETos60qt7r1BAmrp1ViGs9i8fio",
+"AIzaSyCH1hbejF2NbKJXUK0rjw7qtFlTGBKEWb0",
+"AIzaSyDxSaabODrQn1pvBgFyd03k052hvOZnilI",
+"AIzaSyCZh05sWnFqKx5__6uU873cPatXj6L-z2U",
+"AIzaSyBCipxe7YBf12q_mdotAAPJCaX3a2T7nsA",
+"AIzaSyCVk2RfhqdO-XvJ57YtTHNN5YD0knNbZQ0",
+"AIzaSyB9-YD-5ON1H-TZtVGB_t7HPCuBJ_rmOCk",
+"AIzaSyAaPGrGz_50S2y5FKf8zJokbP4fGrYI6aU",
+"AIzaSyDUiZLDMY5CDnz2YpShROwL6RpI2tSYe64",
+"AIzaSyCy9DhrpQLnlCL3nAAGaVlj_DgMY7k8UgA",
+"AIzaSyAVkCmnWfOMKcXhVMWP8czJ0FPcgfgfl6E",
+"AIzaSyDpBN7NTwkp6wZ1wq8dlPxBfRpDyGL5XmU",
+"AIzaSyBjR4uSq7hXLIMOfjCA3g7ns6xgju1PvP8",
+"AIzaSyC-sJ2B1FChMmLrl0mBUojV0Kgu1KBoOsM",
+"AIzaSyBC13IPTRSj6WZ6A0NTZvVUtqGChIS_aoY",
+"AIzaSyBxQmjGaHpD-WeepBMXFV2m4rVsKZD5XS0",
+
+
+CREATE TABLE IF NOT EXISTS `folders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(300) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE IF NOT EXISTS `options` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `xmlru` varchar(300) COLLATE utf8_bin NOT NULL,
+  `xmlcom` varchar(300) COLLATE utf8_bin NOT NULL,
+  `xmltr` varchar(200) COLLATE utf8_bin NOT NULL,
+  `searchtype` int(11) NOT NULL,
+  `snipot` int(11) NOT NULL,
+  `snipdo` int(11) NOT NULL,
+  `withlinks` int(11) NOT NULL,
+  `ytmetod` int(11) NOT NULL,
+  `ytapi` varchar(200) COLLATE utf8_bin NOT NULL,
+  `ytvtype` varchar(200) COLLATE utf8_bin NOT NULL,
+  `ytzaraz` int(11) NOT NULL DEFAULT '1',
+  `fkwkey` varchar(100) COLLATE utf8_bin NOT NULL,
+  `fkwbaza` varchar(50) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE IF NOT EXISTS `sites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(1000) COLLATE utf8_bin NOT NULL,
+  `domain` varchar(1000) COLLATE utf8_bin NOT NULL,
+  `sdb` varchar(50) COLLATE utf8_bin NOT NULL,
+  `added` datetime NOT NULL,
+  `tub` int(11) NOT NULL DEFAULT '1',
+  `snip` int(11) NOT NULL DEFAULT '1',
+  `snipistok` int(11) NOT NULL,
+  `folder` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+
+CREATE TABLE IF NOT EXISTS `cats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) COLLATE utf8_bin NOT NULL,
+  `parid` int(11) NOT NULL,
+  `taketxt` int(11) NOT NULL,
+  `sef` varchar(600) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE IF NOT EXISTS `cats_mask` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cat` int(11) NOT NULL,
+  `name` varchar(400) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE IF NOT EXISTS `options` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `sitename` varchar(1000) COLLATE utf8_bin NOT NULL,
+    `sitetitle` varchar(1000) COLLATE utf8_bin NOT NULL,
+    `maindesc` varchar(1000) COLLATE utf8_bin NOT NULL,
+    `catdesc` varchar(1000) COLLATE utf8_bin NOT NULL,
+    `videodesc` varchar(1000) COLLATE utf8_bin NOT NULL,
+    `catabout` varchar(1000) COLLATE utf8_bin NOT NULL,
+    `videoabout` varchar(1000) COLLATE utf8_bin NOT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE IF NOT EXISTS `keys_text` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kid` int(11) NOT NULL,
+  `tekstovka` text COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE IF NOT EXISTS `words` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fraza` varchar(500) COLLATE utf8_bin NOT NULL,
+  `cid` int(11) NOT NULL,
+  `youtdubles` int(11) NOT NULL,
+  `checkdubles` int(11) NOT NULL,
+  `updated` datetime NOT NULL,
+  `sef` varchar(700) COLLATE utf8_bin NOT NULL,
+  `youtube` varchar(100) COLLATE utf8_bin NOT NULL,
+  `youtname` varchar(1000) COLLATE utf8_bin NOT NULL,
+  `tekstovka` int(11) NOT NULL,
+  `static` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

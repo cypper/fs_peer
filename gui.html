@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Localhost</title>
+</head>
+<style>
+	.butblock {
+		margin: 50px;
+	}
+</style>
+<body>
+	<div class="butblock" id="getstatus">
+		<button>GETSTATUS</button>
+		<p></p>
+	</div>
+	<div class="butblock" id="sendfile">
+		<input type="file" class="file">
+		<button>SENDFILE</button>
+		<p></p>
+	</div>
+	<div class="butblock" id="getfile">
+		<input type="text" class="filename" placeholder="file name">
+		<button>GETFILE</button>
+		<pre></pre>
+	</div>
+
+	<script>
+		(function() {
+			var getstatus = document.getElementById('getstatus');
+			var answer = getstatus.querySelector("p");
+			var button = getstatus.querySelector("button");
+			button.addEventListener("click", function() {
+				button.disabled = true;
+				loadXMLDocPOST("/GETSTATUS", null, function(body) {
+					button.disabled = false;
+					answer.innerHTML = body;
+				})
+			})
+		})();
+		/////////////////////////////////////
+		(function() {
+			var getfile = document.getElementById('getfile');
+			var answer = getfile.querySelector("pre");
+			var filename = getfile.querySelector(".filename");
+			var button = getfile.querySelector("button");
+			button.addEventListener("click", function() {
+				if (!filename.value) return;
+				button.disabled = true;
+				var data = JSON.stringify({name:filename.value});
+				loadXMLDocPOST("/GETFILE", data, function(body) {
+					button.disabled = false;
+					answer.innerHTML = body;
+				})
+			})
+		})();
+		/////////////////////////////////////
+		(function(){
+			var sendfile = document.getElementById('sendfile');
+			var answer = sendfile.querySelector("p");
+			var file = sendfile.querySelector(".file");
+			var button = sendfile.querySelector("button");
+			button.addEventListener("click", function() {
+				console.log([file]);
+				loadFileData(file,function(name,result){
+					button.disabled = true;
+					var data = JSON.stringify({name:name,data:result});
+					loadXMLDocPOST("/SENDFILE", data, function(body) {
+						button.disabled = false;
+						answer.innerHTML = body;
+					})
+				});
+			})
+		})();
+	</script>
+
+
+
+
+
+	<script>
+		function loadFileData(target,callback) {
+			var file = target.files[0]; // FileList object
+
+			var reader = new FileReader();
+
+			reader.onload = function(e) {
+				callback(file.name,e.target.result);
+			};
+
+			reader.readAsText(file);
+		 }
+		
+		function loadXMLDocPOST(url,data,callback) {
+		    var xmlhttp = new XMLHttpRequest();
+
+		    xmlhttp.onreadystatechange = function() {
+		        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+		           if (xmlhttp.status == 200) {
+		               callback(xmlhttp.responseText);
+		           }
+		           else if (xmlhttp.status == 400) {
+		              alert('There was an error 400');
+		           }
+		           else {
+		           		console.log(xmlhttp);
+		               console.log('something else other than 200 was returned');
+		           }
+		        }
+		    };
+
+		    xmlhttp.open("POST", url);
+		    xmlhttp.send(data);
+		}
+
+	</script>
+
+</body>
+</html>
